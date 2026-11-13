@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Usman Automize Full Editing A to Z - PC Tool v2</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>🎬 Usman Automize Full Editing A to Z</h1>
+  <p>PC Tool v2 — 20 AI Agents • Script se Final MP4 tak • Sab kuch aapke PC par</p>
+  <button class="kansas-btn" onclick="showTab('studio')">🌾 Kansas Water — project yahan hai</button>
+  <span id="qaBadge" class="badge pending" style="margin-left:8px">Final QA: pending</span>
+</header>
+
+<nav class="tabs">
+  <button data-tab="studio" class="active" onclick="showTab('studio')">🎬 Studio — topic, script, voice, captions</button>
+  <button data-tab="agents" onclick="showTab('agents')">🤖 20 Agents — kaam aur checker report</button>
+  <button data-tab="media" onclick="showTab('media')">📁 Folders &amp; API — media aur connections</button>
+  <button data-tab="timeline" onclick="showTab('timeline')">🎞 Timeline — CapCut jaisi editing</button>
+  <button data-tab="upload" onclick="showTab('upload')">🚀 Upload Package — description, thumbnail, keywords</button>
+</nav>
+
+<main>
+  <!-- STUDIO -->
+  <section id="tab-studio" class="tab active">
+    <div class="guide"><b>Kaise chalega (4 steps):</b>
+      <ol>
+        <li>Neeche title aur script check karo (Kansas Water pehle se bhara hai).</li>
+        <li><b>Run All Agents</b> dabao — 20 agents tarteeb se kaam karenge.</li>
+        <li><b>Render Final MP4</b> dabao — asal video aapke PC par banegi.</li>
+        <li>Timeline aur Preview dekho, phir Upload Package se YouTube par dalo.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h2>🎬 Studio</h2>
+      <label>Project ka naam</label>
+      <input id="projName" value="Kansas Water" readonly>
+      <label>Topic</label>
+      <input id="topic">
+      <label>Title</label>
+      <input id="title">
+      <label>Script (500 lafz = ~3 min 20 sec)</label>
+      <textarea id="script" rows="10"></textarea>
+      <label>Target words</label>
+      <input id="targetWords" type="number" value="500">
+      <div>
+        <label>Voice (free)</label>
+        <select id="voiceSel">
+          <option>Kokoro bm_george (British male) — free, built-in</option>
+          <option>Edge TTS en-GB-RyanNeural (British male) — free</option>
+          <option>Apni voice (Own Voice folder se)</option>
+        </select>
+      </div>
+      <div>
+        <label>Captions</label>
+        <select id="capSel"><option>Montserrat, Bold outline, neeche</option><option>Montserrat, Bold outline, upar</option></select>
+      </div>
+      <button class="btn" onclick="saveProject()">💾 Project save karo</button>
+      <button class="btn gold" onclick="runAll()">▶ Run All Agents (20 agents)</button>
+      <button class="btn" onclick="renderVideo()">🎥 Render Final MP4</button>
+    </div>
+    <div class="card purple">
+      <h3>📺 Preview</h3>
+      <p class="small">Render ke baad final video yahan chalegi.</p>
+      <video id="preview" controls src="/api/video?file=Kansas-Water-Final.mp4"></video>
+      <div id="statusChips"></div>
+    </div>
+    <div class="card"><h3>📋 Kaam ki report (log)</h3><pre class="log" id="logBox">Abhi koi kaam nahi chal raha.</pre></div>
+  </section>
+
+  <!-- AGENTS -->
+  <section id="tab-agents" class="tab">
+    <div class="card">
+      <h2>🤖 20 Agents + Final QA</h2>
+      <p class="small">Har agent ka apna kaam hai, aur har agent ka checker khud ghalti pakarta hai ya theek karta hai.</p>
+      <button class="btn gold" onclick="runAll()">▶ Run All Agents</button>
+      <div id="agentList" style="margin-top:14px"></div>
+    </div>
+    <div class="card">
+      <h3>⚠ Problems &amp; Solutions — Masla aur Hal</h3>
+      <p class="small">Tool pehle khud theek karta hai. Jo khud na ho sake, woh yahan masle aur hal ke saath likha aata hai.</p>
+      <div id="issueList"><p class="small">Koi masla nahi hai.</p></div>
+    </div>
+  </section>
+
+  <!-- FOLDERS & API -->
+  <section id="tab-media" class="tab">
+    <div class="guide"><b>API kahan se milegi, kahan paste karni hai (3 steps):</b>
+      <ol>
+        <li>Neeche <b>API Connections</b> mein Provider chuno.</li>
+        <li>Us provider ki website se key banao (link har provider ke neeche hai) — key sirf aapke PC par save hoti hai.</li>
+        <li>Key yahan paste karo, Free/Paid chuno, <b>API lagao</b> dabao. Key masked dikhegi.</li>
+      </ol>
+      <b>Free sound:</b> Freesound — freesound.org/apiv2/apply (free account se key turant milti hai).<br>
+      <b>Free voice:</b> Kokoro TTS aur Edge TTS — koi key nahi chahiye, built-in hain.<br>
+      <b>Images:</b> FLUX — fal.ai ya huggingface.co/settings/tokens se key lo.<br>
+      <b>Title/Research:</b> vidIQ — app.vidiq.com/account/settings/mcp se key banao.
+    </div>
+    <div class="card">
+      <h2>🔑 API Connections — Free + Paid Slots</h2>
+      <div id="apiList"></div>
+      <h3>Naya API slot</h3>
+      <label>Provider</label>
+      <select id="apiProvider"></select>
+      <label>Free ya Paid</label>
+      <select id="apiTier"><option value="free">Free API</option><option value="paid">Paid API</option></select>
+      <label>Label (pehchan ke liye)</label>
+      <input id="apiLabel" placeholder="e.g. Usman Automize">
+      <label>API Key</label>
+      <input id="apiKey" type="password" placeholder="sk-... (sirf aapke PC par save hoti hai)">
+      <label>Note</label>
+      <input id="apiNote" placeholder="e.g. Title scoring aur research ke liye">
+      <button class="btn" onclick="saveApi()">API lagao — slot banao</button>
+      <p class="small">Key mujhe chat mein mat bhejo — seedha yahan paste karo.</p>
+    </div>
+    <div class="card">
+      <h2>📁 Media Folders</h2>
+      <p class="small">Asal MP3/MP4/image file upload karo — yehi files timeline par lagti hain.</p>
+      <label>Folder</label>
+      <select id="upFolder">
+        <option value="own_voice">Own Voice (MP3/WAV)</option>
+        <option value="sfx_music">SFX / Music (WAV/MP3)</option>
+        <option value="ai_image">AI Image / Stock (JPG/PNG)</option>
+        <option value="ai_video">AI Video (MP4)</option>
+      </select>
+      <label>File</label>
+      <input id="upFile" type="file">
+      <button class="btn" onclick="uploadMedia()">⬆ File upload karo</button>
+      <div id="mediaList" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="tab-timeline" class="tab">
+    <div class="guide"><b>Final Video — 4 Steps:</b> 1) Agents chalao 2) Voice/SFX upload karo 3) Render dabao 4) Preview dekho — yahan neeche timeline mein har scene, caption aur sound dikhega.</div>
+    <div class="card">
+      <h2>🎞 Timeline — CapCut jaisi editing</h2>
+      <div id="timelineBox"><p class="small">Abhi timeline khaali hai — Run All Agents dabao.</p></div>
+      <button class="btn gold" onclick="renderVideo()">🎥 Render Final MP4</button>
+    </div>
+  </section>
+
+  <!-- UPLOAD -->
+  <section id="tab-upload" class="tab">
+    <div class="card">
+      <h2>🚀 Upload Package</h2>
+      <div id="uploadBox"><p class="small">Abhi package nahi bana — Run All Agents dabao.</p></div>
+      <p class="small">Note: Auto upload abhi band hai (aapne rehne ko kaha tha). Package tayyar milega — YouTube Studio mein khud paste kar ke upload karo, ya baad mein YouTube Data API lagao.</p>
+    </div>
+  </section>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

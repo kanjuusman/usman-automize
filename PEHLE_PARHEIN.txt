@@ -1,0 +1,84 @@
+=====================================================
+   USMAN AUTOMIZE - PC TOOL v2
+   20 AI Agents - Script se Final MP4 tak, apne PC par
+=====================================================
+
+YE TOOL KYA KARTA HAI (khud)
+----------------------------
+1. Studio: title + 500-word Kansas script pehle se bhara hai.
+2. 20 Agents: Research, Script, Fact Check, Title, Voice, AI Image,
+   AI Video, Stock, Archive, Cartoon, 2D Animation, 3D Animation,
+   Editor, Caption, SFX, Music, Graphics, Avatar, QA, Upload -
+   har agent ka asli kaam + checker (ghalti ho to khud theek kare,
+   warna Problems & Solutions mein masla + hal likhe). Aakhir mein
+   Final QA PASS/FAIL deta hai.
+3. Voice: Edge TTS FREE, British male (en-GB-RyanNeural). Kansas ki
+   tayyar voiceover (voiceover-kansas.mp3, 187 sec) pehle se andar hai.
+4. Timeline: CapCut jaisi - video / caption / audio / SFX tracks.
+5. Render: ffmpeg se asal MP4 banata hai (1080p, captions burned-in,
+   voice + SFX mix). output/Kansas-Water-Final.mp4
+6. Upload Package: description, thumbnail text, keywords.
+7. Folders & API: media folders mein asal MP3/MP4/image upload karo;
+   API slots: ChatGPT, Claude, vidIQ, FLUX, Pexels, Free Sound,
+   ElevenLabs, YouTube Data API, Kokoro. Keys sirf aapke PC par
+   data/api_keys.json mein save hoti hain, masked dikhti hain.
+
+PEHLI DAFA (sirf ek dafa)
+-------------------------
+1. Python 3.12 install karein: https://www.python.org/downloads/
+   Install karte waqt "Add python.exe to PATH" par TICK zaroor lagayein.
+2. Is folder mein INSTALL.bat par double-click karein (5-10 minute).
+   ffmpeg khud download ho jayega (bin/ folder mein).
+3. START.bat par double-click karein - browser mein
+   http://localhost:4100 khul jayega. Kaali window KHULI rakhein.
+
+KAAM KA TAREEQA (4 steps)
+-------------------------
+1. Studio tab mein title/script check karo (Kansas pehle se hai).
+2. "Run All Agents" dabao - 20 agents tarteeb se chalenge.
+3. "Render Final MP4" dabao - video banegi. Console par sirf
+   chhoti lines aayengi ("Scene 5/47...", "TAYYAR! Final video..."),
+   poori ffmpeg command nahi chhapti.
+4. Preview dekho, Upload Package tab se description/keywords lo.
+
+APNI VIDEO BANANI HO
+--------------------
+- title.txt mein apna title, script.txt mein apni script likho.
+- images/ folder mein tasveerein daalo: 001.jpg, 002.jpg...
+  Na hon to har scene ka rang + text card ban jayega.
+- Apni music ho to music.mp3 naam se folder mein rakho.
+- Apni voiceover ho to voiceover-kansas.mp3 ki jagah apni MP3
+  isi naam se rakho, ya usay delete kar do (tool khud Edge TTS
+  se bana lega - internet chahiye).
+
+FOLDERS
+-------
+- script.txt / title.txt - script aur title
+- images/ - apni tasveerein
+- sfx/ - 10 free SFX (whoosh, ding, impact, pop, riser, glitch,
+  camera, type) - SEO Tools pack se
+- voiceover-kansas.mp3 - Kansas ki tayyar voiceover
+- captions-kansas.srt - Kansas ke captions
+- data/ - projects.json, api_keys.json, media.json, state.json
+  (sab kuch is PC par save rehta hai)
+- output/ - final MP4 + captions.srt + timeline.txt + upload_package.txt
+- web/ - tool ka page (index.html, style.css, app.js)
+- bin/ - ffmpeg (INSTALL.bat se download hota hai)
+
+MASLA HO TO
+----------
+- "ffmpeg nahi mila": INSTALL.bat dobara chalao.
+- "edge-tts install nahi": INSTALL.bat dobara chalao, internet check karo.
+- Render beech mein ruke ("moov atom not found"): output/_tmp folder
+  delete kar ke dobara Render dabao (kharab cache ki wajah se hota hai).
+- Browser na khule: khud kholo http://localhost:4100
+- Auto upload abhi band hai - package tayyar milega, YouTube Studio
+  mein khud upload karo (YouTube Data API baad mein lagao ge to
+  direct upload bhi aa jayega).
+
+FREE / MONETIZATION
+-------------------
+- Voice: Edge TTS aur Kokoro free, insaan jaisi.
+- SFX: is folder ki sounds free hain. Freesound API bhi free hai.
+- Sirf AI voice se monetization nahi rukti - script original ho to
+  koi masla nahi.
